@@ -6,6 +6,8 @@ var DATA = [
   { user: 'tim', message: 'education for real world', created_at: '2019-01-04 18:30:20' }
 ];
 
+let filteredDATA = []
+
 var randomUser = ['ingikim', 'satya', 'sundar', 'steve', 'tim', 'jeff'];
 var randomMessage = [
   '이 헌법공포 당시의 국회의원의 임기는 제1항에 의한 국회의 최초의 집회일 전일까지로 한다. 감사원은 원장을 포함한 5인 이상 11인 이하의 감사위원으로 구성한다.',

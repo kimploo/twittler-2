@@ -29,7 +29,7 @@ function generateNewTweet() {
   var tweet = {};
   tweet.user = randomUser[getRandomInt(0, randomUser.length)];
   tweet.message = randomMessage[getRandomInt(0, randomMessage.length)];
-  tweet.created_at = new Date(); // 어떻게 하면 보기 좋은 형태로 나타낼 수 있을까요?
+  tweet.created_at = new Date().format(); // 어떻게 하면 보기 좋은 형태로 나타낼 수 있을까요?
   return tweet;
 }
 

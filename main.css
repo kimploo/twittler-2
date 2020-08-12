@@ -6,6 +6,7 @@ input {
 
 html,
 body {
+  /* font-family: 'Segoe UI', Arial, sans-serif; */
   line-height: 1.5;
 }
 
@@ -15,18 +16,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   font-weight: 400;
   margin: 10px 0;
 }
 
 h1 {
+  font-weight: bold;
   font-size: 36px;
 }
 h2 {
   font-size: 30px;
 }
 h3 {
+  font-weight: bold;
   font-size: 24px;
   cursor: pointer;
 }
@@ -51,11 +54,13 @@ textarea {
 }
 
 ul {
+  padding: 0px;
   list-style-type: none;
 }
 
-.serif {
-  font-family: serif;
+li {
+  padding: 1em;
+  /* margin-bottom: 1em; */
 }
 
 #idUserNameInput {
@@ -72,7 +77,25 @@ ul {
   overflow: hidden;
 }
 
-.button {
+.inputLabel {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.classUserNameTweet {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.classUserNameTweet:hover {
+  color: #000 !important;
+  background-color: #ccc !important;
+}
+
+p .button {
   border: none;
   display: inline-block;
   padding: 8px 16px;
@@ -99,13 +122,6 @@ ul {
   margin-left: auto;
   margin-right: auto;
   max-width: 980px;
-}
-
-.container:after,
-.container:before {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .container {

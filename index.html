@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="data.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Raleway"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
     <title>Twittler - Vanila JS</title>
   </head>
 
@@ -31,28 +28,19 @@
           <!-- New Twittler textbox-->
           <div class="card-4 margin white">
             <div class="container">
-              <p>User : <input id="idUserNameInput" type="text" /></p>
+              <p><span class="inputLabel">User :</span> <input id="idUserNameInput" type="text" /></p>
               <p></p>
-              <p>Message : <input id="idUserTweetInput" type="text" /></p>
+              <p><span class="inputLabel">Message :</span> <input id="idUserTweetInput" type="text" /></p>
 
               <div>
                 <p>
-                  <button
-                    id="idTweetButton"
-                    class="button padding-large white border"
-                  >
+                  <button id="idTweetButton" class="button padding-large white border">
                     <b>Tweet!</b>
                   </button>
-                  <button
-                    id="idRandomButton"
-                    class="button padding-large white border"
-                  >
+                  <button id="idRandomButton" class="button padding-large white border">
                     <b>Check Tweets!</b>
                   </button>
-                  <button
-                    id="idGoBackButton"
-                    class="button padding-large white border"
-                  >
+                  <button id="idGoBackButton" class="button padding-large white border">
                     <b>Go Back!</b>
                   </button>
                 </p>
@@ -61,14 +49,14 @@
           </div>
 
           <!-- Tweet lists -->
-          <div id="tweetlist"></div>
+          <div id="tweetlist" class="card-4 margin"></div>
           <!-- END GRID -->
         </div>
         <!-- END content -->
       </div>
 
       <!-- Footer -->
-      <footer class="">
+      <footer class="container black padding-32 margin-top">
         <p>Made by Hong Shik Branden Kim</p>
       </footer>
       <script src="script.js"></script>

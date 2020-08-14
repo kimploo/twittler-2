@@ -7,7 +7,6 @@ const userTweetInput = document.querySelector('#idUserTweetInput');
 const tweetButton = document.querySelector('#idTweetButton');
 const randomButton = document.querySelector('#idRandomButton');
 const goBackButton = document.querySelector('#idGoBackButton');
-// 이름 , 내용, 버튼 불러오기
 
 const mainTweetList = document.querySelector('#tweetlist');
 
@@ -64,14 +63,14 @@ const renderFilteredDATA = function (targetName) {
 const removeTweet = function () {
   const tweetWrapper = document.querySelector('#tweetWrapper');
   tweetWrapper.remove();
-}; // 모든 Tweet을 삭제 (id로 조회하여 .remove()로 삭제)
+};
 
 const handleClickUser = function (event) {
   const targetName = event.target.textContent;
   alert(`${targetName} 필터링 결과입니다.`);
   removeTweet();
   renderFilteredDATA(targetName);
-}; // 특정 아이디만 EventListener 추가
+};
 
 tweetButton.addEventListener('click', function () {
   if (state.isFilteredPage) {
@@ -92,7 +91,7 @@ tweetButton.addEventListener('click', function () {
   } else {
     alert('User와 Message를 모두 입력하세요.');
   }
-}); // tweetButton 작동 부분
+});
 
 randomButton.addEventListener('click', function () {
   if (state.isFilteredPage) {
@@ -103,12 +102,12 @@ randomButton.addEventListener('click', function () {
   DATA.unshift(tweetObject);
   removeTweet();
   renderDATA();
-}); // randomButton 작동 부분
+});
 
 goBackButton.addEventListener('click', function () {
   alert('전체 트윗 창입니다.');
   removeTweet();
   renderDATA();
-}); // goBackButton 작동 부분
+});
 
 renderDATA();

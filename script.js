@@ -1,3 +1,7 @@
+const state = {
+  isFilteredPage: false,
+};
+
 const userNameInput = document.querySelector('#idUserNameInput');
 const userTweetInput = document.querySelector('#idUserTweetInput');
 const tweetButton = document.querySelector('#idTweetButton');
@@ -13,6 +17,7 @@ function loadDATA() {
 
   const tweets = DATA.reduce(tweetListReducer, ul);
 
+  state.isFilteredPage = false;
   mainTweetList.append(tweets);
 
   // DATA array의 모든 element를 불러온다.
@@ -27,6 +32,7 @@ function loadfilteredDATA(targetName) {
     return tweet.user === targetName;
   }).reduce(tweetListReducer, ul);
 
+  state.isFilteredPage = true;
   mainTweetList.append(tweets);
 
   // filteredDATA 의 모든 element를 불러온다.
@@ -48,12 +54,12 @@ function tweetListReducer(ul, tweet, id) {
 
   const h5 = document.createElement('h5');
   createdAt.id = `createdAt${id}`;
-  createdAt.className = 'classCreatedAtTweet';
+  createdAt.classList.add('classCreatedAtTweet');
   h5.textContent = tweet.created_at;
   createdAt.append(h5);
 
   message.id = `message${id}`;
-  message.className = 'classMessageTweet';
+  message.classList.add('classMessageTweet');
   message.textContent = tweet.message;
 
   li.append(user, createdAt, message);
@@ -69,19 +75,14 @@ function removeTweet() {
 function addOnClickHere(event) {
   let targetName = event.target.textContent;
   alert(`${targetName} 필터링 결과입니다.`);
-  DATA.forEach(function (tweet) {
-    if (tweet.user === targetName && !filteredDATA.includes(tweet)) {
-      filteredDATA.unshift(tweet);
-    }
-  });
   removeTweet();
   loadfilteredDATA(targetName);
 } // 특정 아이디만 EventListener 추가
 
 tweetButton.onclick = function () {
-  if (filteredDATA.length !== 0) {
+  if (state.isFilteredPage) {
     alert('Go Back 버튼을 눌러 전체 트윗 창으로 돌아가세요.');
-    return undefined;
+    return;
   }
   let tweetObject = {};
   let currentTime = new Date().format();
@@ -101,9 +102,9 @@ tweetButton.onclick = function () {
 }; // tweetButton 작동 부분
 
 randomButton.onclick = function () {
-  if (filteredDATA.length !== 0) {
+  if (state.isFilteredPage) {
     alert('Go Back 버튼을 눌러 전체 트윗 창으로 돌아가세요.');
-    return undefined;
+    return;
   }
   let tweetObject = {};
   tweetObject = generateNewTweet();
@@ -115,15 +116,9 @@ randomButton.onclick = function () {
 }; // randomButton 작동 부분
 
 goBackButton.onclick = function () {
-  if (filteredDATA.length !== 0) {
-    filteredDATA = [];
-    removeTweet();
-    loadDATA();
-  } else {
-    alert('전체 트윗 창입니다.');
-    removeTweet();
-    loadDATA();
-  }
+  alert('전체 트윗 창입니다.');
+  removeTweet();
+  loadDATA();
 }; // goBackButton 작동 부분
 
 loadDATA();

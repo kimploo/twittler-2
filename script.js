@@ -11,29 +11,7 @@ const goBackButton = document.querySelector('#idGoBackButton');
 
 const mainTweetList = document.querySelector('#tweetlist');
 
-function loadDATA() {
-  const ul = document.createElement('ul');
-  ul.id = 'tweetWrapper';
-
-  const tweets = DATA.reduce(tweetListReducer, ul);
-
-  state.isFilteredPage = false;
-  mainTweetList.append(tweets);
-}
-
-function loadfilteredDATA(targetName) {
-  const ul = document.createElement('ul');
-  ul.id = 'tweetWrapper';
-
-  const tweets = DATA.filter(function (tweet) {
-    return tweet.user === targetName;
-  }).reduce(tweetListReducer, ul);
-
-  state.isFilteredPage = true;
-  mainTweetList.append(tweets);
-}
-
-function tweetListReducer(ul, tweet, id) {
+const tweetListReducer = function (ul, tweet, id) {
   const li = document.createElement('li');
   li.classList.add('white');
 
@@ -44,7 +22,7 @@ function tweetListReducer(ul, tweet, id) {
   user.id = `user${id}`;
   user.classList.add('classUserNameTweet');
   user.textContent = tweet.user;
-  user.addEventListener('click', addOnClickHere);
+  user.addEventListener('click', handleClickUser);
 
   const h5 = document.createElement('h5');
   createdAt.id = `createdAt${id}`;
@@ -59,58 +37,78 @@ function tweetListReducer(ul, tweet, id) {
   li.append(user, createdAt, message);
   ul.append(li);
   return ul;
-}
+};
 
-function removeTweet() {
+const renderDATA = function () {
+  const ul = document.createElement('ul');
+  ul.id = 'tweetWrapper';
+
+  const tweets = DATA.reduce(tweetListReducer, ul);
+
+  state.isFilteredPage = false;
+  mainTweetList.append(tweets);
+};
+
+const renderFilteredDATA = function (targetName) {
+  const ul = document.createElement('ul');
+  ul.id = 'tweetWrapper';
+
+  const tweets = DATA.filter(function (tweet) {
+    return tweet.user === targetName;
+  }).reduce(tweetListReducer, ul);
+
+  state.isFilteredPage = true;
+  mainTweetList.append(tweets);
+};
+
+const removeTweet = function () {
   const tweetWrapper = document.querySelector('#tweetWrapper');
   tweetWrapper.remove();
-} // 모든 Tweet을 삭제 (id로 조회하여 .remove()로 삭제)
+}; // 모든 Tweet을 삭제 (id로 조회하여 .remove()로 삭제)
 
-function addOnClickHere(event) {
-  let targetName = event.target.textContent;
+const handleClickUser = function (event) {
+  const targetName = event.target.textContent;
   alert(`${targetName} 필터링 결과입니다.`);
   removeTweet();
-  loadfilteredDATA(targetName);
-} // 특정 아이디만 EventListener 추가
+  renderFilteredDATA(targetName);
+}; // 특정 아이디만 EventListener 추가
 
-tweetButton.onclick = function () {
+tweetButton.addEventListener('click', function () {
   if (state.isFilteredPage) {
     alert('Go Back 버튼을 눌러 전체 트윗 창으로 돌아가세요.');
     return;
   }
-  let tweetObject = {};
-  let currentTime = new Date().format();
   if (userNameInput.value && userTweetInput.value) {
+    const tweetObject = {};
     tweetObject.user = userNameInput.value;
     tweetObject.message = userTweetInput.value;
-    tweetObject.created_at = currentTime;
+    tweetObject.created_at = moment().locale('ko').fromNow();
     alert(`${tweetObject.user}님의 트윗을 전송합니다.`);
     DATA.unshift(tweetObject);
     removeTweet();
-    loadDATA();
+    renderDATA();
     userNameInput.value = '';
     userTweetInput.value = '';
   } else {
     alert('User와 Message를 모두 입력하세요.');
   }
-}; // tweetButton 작동 부분
+}); // tweetButton 작동 부분
 
-randomButton.onclick = function () {
+randomButton.addEventListener('click', function () {
   if (state.isFilteredPage) {
     alert('Go Back 버튼을 눌러 전체 트윗 창으로 돌아가세요.');
     return;
   }
-  let tweetObject = {};
-  tweetObject = generateNewTweet();
+  const tweetObject = generateNewTweet();
   DATA.unshift(tweetObject);
   removeTweet();
-  loadDATA();
-}; // randomButton 작동 부분
+  renderDATA();
+}); // randomButton 작동 부분
 
-goBackButton.onclick = function () {
+goBackButton.addEventListener('click', function () {
   alert('전체 트윗 창입니다.');
   removeTweet();
-  loadDATA();
-}; // goBackButton 작동 부분
+  renderDATA();
+}); // goBackButton 작동 부분
 
-loadDATA();
+renderDATA();

@@ -19,10 +19,7 @@ function loadDATA() {
 
   state.isFilteredPage = false;
   mainTweetList.append(tweets);
-
-  // DATA array의 모든 element를 불러온다.
-  // creatNewTweet으로 생성되는 모든 classViewUser에 addEvenListner
-} // DATA.length 만큼 실행된다. i.e. DATA[0] => 0번째 Tweet 생성
+}
 
 function loadfilteredDATA(targetName) {
   const ul = document.createElement('ul');
@@ -34,10 +31,7 @@ function loadfilteredDATA(targetName) {
 
   state.isFilteredPage = true;
   mainTweetList.append(tweets);
-
-  // filteredDATA 의 모든 element를 불러온다.
-  // 불러 올 때, HTML에도 추가가 되도록 설정을 해야된다.
-} // filteredDATA.length 만큼 실행된다. i.e. filteredDATA[0] => 0번째 Tweet 생성
+}
 
 function tweetListReducer(ul, tweet, id) {
   const li = document.createElement('li');
@@ -108,8 +102,6 @@ randomButton.onclick = function () {
   }
   let tweetObject = {};
   tweetObject = generateNewTweet();
-  // 랜덤 유져, 랜덤 메세지
-  // alert(`아무것도 입력하지 않으시면 자동으로 랜덤한 유져가 랜덤한 트윗을 전송합니다.`);
   DATA.unshift(tweetObject);
   removeTweet();
   loadDATA();

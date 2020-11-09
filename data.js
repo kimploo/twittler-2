@@ -1,9 +1,9 @@
 const DATA = [
-  { user: 'ingikim', message: 'Welcome to Code States #codestates', created_at: moment('2019-01-03 12:30:20').locale('ko').fromNow() },
-  { user: 'satya', message: 'this is test message #pair #programming', created_at: moment('2019-01-04 18:30:20').locale('ko').fromNow() },
-  { user: 'sundar', message: 'code now! #work #hard', created_at: moment('2019-01-05 07:30:20').locale('ko').fromNow() },
-  { user: 'steve', message: 'Stay hungry, and stay foolish', created_at: moment('2015-01-03 12:30:20').locale('ko').fromNow() },
-  { user: 'tim', message: 'education for real world', created_at: moment('2019-01-04 18:30:20').locale('ko').fromNow() },
+  { user: 'ingikim', message: 'Welcome to Code States #codestates', created_at: dayjs(new Date('2019-01-03 12:30:20')).fromNow() },
+  { user: 'satya', message: 'this is test message #pair #programming', created_at: dayjs(new Date('2019-01-04 18:30:20')).fromNow() },
+  { user: 'sundar', message: 'code now! #work #hard', created_at: dayjs(new Date('2019-01-05 07:30:20')).fromNow() },
+  { user: 'steve', message: 'Stay hungry, and stay foolish', created_at: dayjs(new Date('2015-01-03 12:30:20')).fromNow() },
+  { user: 'tim', message: 'education for real world', created_at: dayjs(new Date('2019-01-04 18:30:20')).fromNow() },
 ];
 
 const randomUser = ['ingikim', 'satya', 'sundar', 'steve', 'tim', 'jeff'];
@@ -28,6 +28,6 @@ const generateNewTweet = function () {
   const tweet = {};
   tweet.user = randomUser[getRandomInt(0, randomUser.length)];
   tweet.message = randomMessage[getRandomInt(0, randomMessage.length)];
-  tweet.created_at = moment().locale('ko').fromNow(); // 어떻게 하면 보기 좋은 형태로 나타낼 수 있을까요?
+  tweet.created_at = dayjs().fromNow(); // 어떻게 하면 보기 좋은 형태로 나타낼 수 있을까요?
   return tweet;
 };
